@@ -40,12 +40,13 @@ require_relative "../models/address_book.rb"
   #context "#remove_entry" do
     it "deletes one entry of the address book" do
       book = AddressBook.new
-      entry = book.add_entry('Ada Lovelace', '010.012.1815', 'augusta.king@lovelace.com')
+      book.add_entry('Ada Lovelace', '010.012.1815', 'augusta.king@lovelace.com')\
+      # raise
 
-      book.remove_entry(entry)
-      #expect(book.entries).to be_empty
-      expect(book.entries.index(entry)).to be_nil
-      #expect { book.remove_entry(entry) }.to change{book.entries.count}.by(-1)
+      # book.remove_entry(book.entries[0])
+      # expect(book.entries).to be_empty
+      # expect(book.entries.index(entry)).to be_nil
+      expect { book.remove_entry(book.entries[0]) }.to change{book.entries.count}.by(-1)
     end
   end
  end

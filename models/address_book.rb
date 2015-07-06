@@ -25,6 +25,6 @@ class AddressBook
   end
 
   def remove_entry(entry)
-  @entries.delete(entry)
-   end
+    @entries.delete(entry)
+  end
  end
