@@ -12,32 +12,6 @@ class AddressBook
     @entries << Entry.new(name, phone, email)
   end
 
-  def binary_search(name)
-    lower = 0
-    upper = entries.length - 1
-
-    while upper >= lower
-      mid = (upper + lower) / 2
-      mid_value = entries[mid].name
-      val = name <=> mid_value
-
-      if val < 0
-        lower = mid + 1
-      elsif val > 0
-        upper = mid - 1
-      else
-        return entries[mid]
-      end
-    end
-
-    return nil
-  end
-
-  def search(name)
-    # Maybe we have more than one implementation of search?
-    return binary_search(name)
-  end
-
   def import_from_csv(file_name)
     csv_text = File.read(file_name)
     csv = CSV.parse(csv_text, headers: true, skip_blanks: true)
