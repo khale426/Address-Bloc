@@ -1,40 +1,59 @@
-require_relative "../controllers/menu_controller"
-
- # #4
- menu = MenuController.new
- # #5
- system "clear"
- puts "Welcome to AddressBloc!"
- # #6
- menu.main_menu
-
- # #8
-  require_relative "entry.rb"
-
-
+require 'csv'
+require_relative "entry"
 
 class AddressBook
-   attr_accessor :entries
+  attr_accessor :entries
 
-   def initialize
-     @entries = []
-   end
-
-   def add_entry(name, phone, email)
- # #9
-     index = 0
-     @entries.each do |entry|
-       # #10
-      if name < entry.name
-        break
-      end
-      index += 1
-    end
-    # #11
-    @entries.insert(index, Entry.new(name, phone, email))
+  def initialize
+    @entries = []
   end
 
-  def remove_entry(entry)
-  @entries.delete(entry)
-   end
+  def add_entry(name, phone, email)
+    @entries << Entry.new(name, phone, email)
+  end
+
+  def binary_search(name)
+      lower = 0
+      upper = entries.length - 1
+
+      while upper >= lower
+        mid = (upper + lower) / 2
+        mid_value = entries[mid].name
+        val = name <=> mid_value
+
+        if val < 0
+          lower = mid + 1
+        elsif val > 0
+          upper = mid - 1
+        else
+          return entries[mid]
+        end
+      end
+      return nil
+    end
+
+    def search(name)
+      # Maybe we have more than one implementation of search?
+      return binary_search(name)
+    end
+
+  def import_from_csv(file_name)
+    csv_text = File.read(file_name)
+    csv = CSV.parse(csv_text, headers: true, skip_blanks: true)
+    #new_entries = csv.count
+    csv.each do |row|
+      row_hash = row.to_hash
+      add_entry(row_hash["name"], row_hash["phone_number"], row_hash["email"])
+    end
+    return csv.count
+
+      # def remove_entry(entry)
+      # @entries.delete(entry)
+      #  end
+def binary_search(name)
+  return nil
+    # system "clear"
+    # puts "#{new_entries} new entries added from #{file_name}"
+  end
  end
+end
