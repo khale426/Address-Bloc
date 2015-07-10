@@ -27,24 +27,24 @@ class MenuController
        when 1
          puts "You picked #{selection}"
          view_all_entries
-         run
-         #main_menu
+        #  run
+         main_menu
 
        when 2
          create_entry
-         run
+         main_menu
        when 3
          puts "You picked #{selection}"
          search_entries
-         run
+         main_menu
        when 4
          read_csv
-         run
+         main_menu
        when 5
          puts "Good-bye!"
          # #8
        exit(0)
-       run
+       main_menu
  # #9
      else
        puts "#{selection} is not a valid input"

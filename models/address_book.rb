@@ -9,7 +9,7 @@ require_relative "../controllers/menu_controller.rb"
  # menu.main_menu
  #
  # # #8
-  #require_relative "entry.rb"
+  require_relative "entry.rb"
 
 
 
